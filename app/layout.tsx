@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import './globals.css'
 import UserProvider from '@/Providers/UserProvider'
+import ThemeProviderComponent from '@/Providers/ThemeProviderComponent'
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 
@@ -17,9 +18,11 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<UserProvider>
-				<body className={open_sans.className}>{children}</body>
-			</UserProvider>
+			<ThemeProviderComponent>
+				<UserProvider>
+					<body className={open_sans.className}>{children}</body>
+				</UserProvider>
+			</ThemeProviderComponent>
 		</html>
 	)
 }
