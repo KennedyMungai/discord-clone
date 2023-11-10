@@ -9,3 +9,29 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Profile {
+  id String @id @default(uuid())
+  userId String @unique
+  name String 
+  imageUrl String @db.Text
+  email String @db.Text
+
+  servers Server[]
+
+  createdAt DateTime @default(now())
+  updatedTime DateTime @updatedAt
+}
+
+
+model Server {
+  id String @id @default(uuid())
+  name String
+  image String @db.Text
+  inviteCode String @db.Text
+
+  profileId String
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  
+  @@index([profileId])
+}
