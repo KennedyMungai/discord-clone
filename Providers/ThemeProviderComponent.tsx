@@ -12,6 +12,7 @@ const ThemeProviderComponent = ({ children }: Props) => {
 			attribute='class'
 			defaultTheme='system'
 			enableSystem
+            storageKey='discord-theme'
 		>
 			{children}
 		</NextThemesProvider>
